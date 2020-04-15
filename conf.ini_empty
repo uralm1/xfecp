@@ -1,0 +1,52 @@
+;;Configuration settings for application
+title = "Учет ЭП"
+;default_language = "ru"
+;disable_g2 = 1
+default_table = ecps
+
+[languages]
+ru = "Русский"
+;en = "English"
+
+[_database]
+host="dbserver"
+name="pdata"
+user="user"
+password="password"
+driver=mysqli
+
+[_tables]
+ecps = "ЭП"
+ecp_assignments = "Выдача носителей"
+skzi = "СКЗИ"
+skzi_assignments = "Установки СКЗИ"
+ecp_dov = "Доверенности"
+issuers = "УЦ"
+orders = "Основания / Приказы / СЗ"
+tokens = "Носители"
+token_types = "Типы носителей"
+users_cache = "Пользователи (кэш)"
+
+[_disallowed_tables]
+r1 = "secraise"
+r2 = "secraise_log"
+r3 = "spnx_logins"
+
+[_prefs]
+;show_table_tabs = 1
+;show_record_tabs = 1
+;list_view_scroll_horizontal = 1
+hide_record_search = 1
+;hide_record_view_logo = 1
+hide_related_sections = 1
+
+[history]
+enabled = 1
+
+[_auth]
+auth_type = preauth
+users_table = xfecp_users
+username_column = login
+password_column = ""
+allow_register = 0
+;session_timeout = 3600
