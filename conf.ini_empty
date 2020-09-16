@@ -1,7 +1,6 @@
 ;;Configuration settings for application
 title = "Учет ЭП"
 ;default_language = "ru"
-;disable_g2 = 1
 default_table = ecps
 
 [languages]
@@ -50,3 +49,7 @@ username_column = login
 password_column = ""
 allow_register = 0
 ;session_timeout = 3600
+
+[_modules]
+modules_g2 = 'modules/g2/g2.php'
+
