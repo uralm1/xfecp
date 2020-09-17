@@ -4,20 +4,3 @@
   width: 80px;
   margin: 3px 45px;
 }
-
-body {
-  font-size: 90%;
-}
-
-.portletBody {
-  font-size: 80%;
-}
-
-.formHelp {
-  font-size: 70%;
-  margin-top: 3px;
-}
-
-td.Dataface_QuickForm-label-cell {
-  line-height: normal;
-}
