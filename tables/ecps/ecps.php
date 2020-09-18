@@ -9,6 +9,10 @@ class tables_ecps {
     }
   }
 
+  function titleColumn() {
+    return "CONCAT_WS(' ', owner_fl, issuer, date_issue)";
+  }
+
   function date_issue__display(&$record) {
     return date('d/m/Y', strtotime($record->strval('date_issue')));
   }
