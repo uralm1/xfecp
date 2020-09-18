@@ -80,7 +80,6 @@ CREATE TABLE `ecps__history` (
 
 CREATE TABLE `ecp_assignments` (
   `id` int(10) UNSIGNED NOT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '1',
   `ecp_id` int(11) NOT NULL,
   `user_to_id` int(11) NOT NULL,
   `token_id` int(11) NOT NULL,
@@ -108,7 +107,6 @@ CREATE TABLE `ecp_assignments__history` (
   `history__state` int(5) DEFAULT '0',
   `history__modified` datetime DEFAULT NULL,
   `id` int(10) UNSIGNED DEFAULT NULL,
-  `state` tinyint(1) DEFAULT NULL,
   `ecp_id` int(11) DEFAULT NULL,
   `user_to_id` int(11) DEFAULT NULL,
   `token_id` int(11) DEFAULT NULL,
@@ -262,7 +260,6 @@ CREATE TABLE `skzi` (
 
 CREATE TABLE `skzi_assignments` (
   `id` int(10) UNSIGNED NOT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '1',
   `skzi_id` int(11) NOT NULL,
   `user_to_id` int(11) NOT NULL,
   `arm_hostname` varchar(40) NOT NULL,
@@ -288,7 +285,6 @@ CREATE TABLE `skzi_assignments__history` (
   `history__state` int(5) DEFAULT '0',
   `history__modified` datetime DEFAULT NULL,
   `id` int(10) UNSIGNED DEFAULT NULL,
-  `state` tinyint(1) DEFAULT NULL,
   `skzi_id` int(11) DEFAULT NULL,
   `user_to_id` int(11) DEFAULT NULL,
   `arm_hostname` varchar(40) DEFAULT NULL,
