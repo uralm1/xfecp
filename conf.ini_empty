@@ -21,7 +21,7 @@ skzi = "СКЗИ"
 skzi_assignments = "Установки СКЗИ"
 ecp_dov = "Доверенности"
 issuers = "УЦ"
-orders = "Основания / Приказы / СЗ"
+orders = "Основания/Приказы/СЗ"
 tokens = "Носители"
 token_types = "Типы носителей"
 users_cache = "Пользователи (кэш)"
@@ -38,6 +38,7 @@ r3 = "spnx_logins"
 hide_record_search = 1
 ;hide_record_view_logo = 1
 hide_related_sections = 1
+;show_jump_menu = 0
 
 [history]
 enabled = 1

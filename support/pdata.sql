@@ -3,11 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: beko
--- Время создания: Апр 19 2020 г., 14:14
+-- Время создания: Окт 15 2020 г., 16:46
 -- Версия сервера: 10.1.26-MariaDB-0+deb9u1
 -- Версия PHP: 7.2.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -47,34 +49,6 @@ CREATE TABLE `ecps` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ecps__history`
---
-
-CREATE TABLE `ecps__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `owner_ul` varchar(255) DEFAULT NULL,
-  `owner_fl_id` int(11) DEFAULT NULL,
-  `date_issue` date DEFAULT NULL,
-  `date_end` date DEFAULT NULL,
-  `issuer_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `ticket_no` int(11) DEFAULT NULL,
-  `cert` blob,
-  `cert_mimetype` varchar(64) DEFAULT NULL,
-  `cert_filename` varchar(255) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `ecp_assignments`
 --
 
@@ -91,33 +65,6 @@ CREATE TABLE `ecp_assignments` (
   `ticket_no` int(11) NOT NULL,
   `rec_no` varchar(15) NOT NULL,
   `note` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `ecp_assignments__history`
---
-
-CREATE TABLE `ecp_assignments__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `ecp_id` int(11) DEFAULT NULL,
-  `user_to_id` int(11) DEFAULT NULL,
-  `token_id` int(11) DEFAULT NULL,
-  `token_pin` varchar(40) DEFAULT NULL,
-  `date_assignment` datetime DEFAULT NULL,
-  `dov_id` int(11) DEFAULT NULL,
-  `user_it_id` int(11) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `ticket_no` int(11) DEFAULT NULL,
-  `rec_no` varchar(15) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -142,31 +89,6 @@ CREATE TABLE `ecp_dov` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ecp_dov__history`
---
-
-CREATE TABLE `ecp_dov__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `n` varchar(10) DEFAULT NULL,
-  `user_issuer_id` int(11) DEFAULT NULL,
-  `user_to_id` int(11) DEFAULT NULL,
-  `date_issue` date DEFAULT NULL,
-  `date_upto` date DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
-  `scan` longblob,
-  `scan_mimetype` varchar(64) DEFAULT NULL,
-  `scan_filename` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `issuers`
 --
 
@@ -181,53 +103,16 @@ CREATE TABLE `issuers` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `issuers__history`
---
-
-CREATE TABLE `issuers__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `trusted` tinyint(1) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `orders`
 --
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
+  `type` tinyint(1) UNSIGNED NOT NULL,
+  `n` varchar(10) NOT NULL,
+  `date` date NOT NULL,
   `text` varchar(255) NOT NULL,
   `scan` longblob NOT NULL,
-  `scan_mimetype` varchar(64) DEFAULT NULL,
-  `scan_filename` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `orders__history`
---
-
-CREATE TABLE `orders__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
-  `scan` longblob,
   `scan_mimetype` varchar(64) DEFAULT NULL,
   `scan_filename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -274,57 +159,6 @@ CREATE TABLE `skzi_assignments` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `skzi_assignments__history`
---
-
-CREATE TABLE `skzi_assignments__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `skzi_id` int(11) DEFAULT NULL,
-  `user_to_id` int(11) DEFAULT NULL,
-  `arm_hostname` varchar(40) DEFAULT NULL,
-  `date_assignment` datetime DEFAULT NULL,
-  `user_it_id` int(11) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `ticket_no` int(11) DEFAULT NULL,
-  `rec_no` varchar(15) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `skzi__history`
---
-
-CREATE TABLE `skzi__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `manufacturer` varchar(255) DEFAULT NULL,
-  `sn` varchar(255) DEFAULT NULL,
-  `license` varchar(255) DEFAULT NULL,
-  `scan` longblob,
-  `scan_mimetype` varchar(64) DEFAULT NULL,
-  `scan_filename` varchar(255) DEFAULT NULL,
-  `dist_placement` varchar(255) DEFAULT NULL,
-  `dist_checksum` varchar(255) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `tokens`
 --
 
@@ -338,25 +172,6 @@ CREATE TABLE `tokens` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tokens__history`
---
-
-CREATE TABLE `tokens__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `type_id` int(11) DEFAULT NULL,
-  `sn` varchar(40) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `token_types`
 --
 
@@ -364,6 +179,15 @@ CREATE TABLE `token_types` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `token_types`
+--
+
+INSERT INTO `token_types` (`id`, `type`) VALUES
+(1, 'RuToken Lite'),
+(3, 'Флешка USB Transcend JF V10 4GB'),
+(4, 'RuToken S');
 
 -- --------------------------------------------------------
 
@@ -384,28 +208,6 @@ CREATE TABLE `users_cache` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users_cache__history`
---
-
-CREATE TABLE `users_cache__history` (
-  `history__id` int(11) NOT NULL,
-  `history__language` varchar(2) DEFAULT NULL,
-  `history__comments` text,
-  `history__user` varchar(32) DEFAULT NULL,
-  `history__state` int(5) DEFAULT '0',
-  `history__modified` datetime DEFAULT NULL,
-  `id` int(10) UNSIGNED DEFAULT NULL,
-  `fio` varchar(255) DEFAULT NULL,
-  `login` varchar(40) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `email` varchar(40) DEFAULT NULL,
-  `phone` varchar(40) DEFAULT NULL,
-  `room` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `xfecp_users`
 --
 
@@ -415,6 +217,15 @@ CREATE TABLE `xfecp_users` (
   `password` varchar(32) NOT NULL,
   `role` enum('NO ACCESS','READ ONLY','EDIT','DELETE','ADMIN') NOT NULL DEFAULT 'NO ACCESS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `xfecp_users`
+--
+
+INSERT INTO `xfecp_users` (`id`, `login`, `password`, `role`) VALUES
+(1, 'ural', 'test', 'ADMIN'),
+(2, 'av', 'test', 'DELETE'),
+(7, 'ponkin', 'test', 'DELETE');
 
 --
 -- Индексы сохранённых таблиц
@@ -429,14 +240,6 @@ ALTER TABLE `ecps`
   ADD KEY `date_issue` (`date_issue`);
 
 --
--- Индексы таблицы `ecps__history`
---
-ALTER TABLE `ecps__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
-
---
 -- Индексы таблицы `ecp_assignments`
 --
 ALTER TABLE `ecp_assignments`
@@ -446,26 +249,10 @@ ALTER TABLE `ecp_assignments`
   ADD KEY `date_assignment` (`date_assignment`);
 
 --
--- Индексы таблицы `ecp_assignments__history`
---
-ALTER TABLE `ecp_assignments__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
-
---
 -- Индексы таблицы `ecp_dov`
 --
 ALTER TABLE `ecp_dov`
   ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `ecp_dov__history`
---
-ALTER TABLE `ecp_dov__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
 
 --
 -- Индексы таблицы `issuers`
@@ -474,26 +261,12 @@ ALTER TABLE `issuers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `issuers__history`
---
-ALTER TABLE `issuers__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
-
---
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `orders__history`
---
-ALTER TABLE `orders__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `date` (`date`),
+  ADD KEY `n` (`n`);
 
 --
 -- Индексы таблицы `skzi`
@@ -510,35 +283,11 @@ ALTER TABLE `skzi_assignments`
   ADD KEY `date_assignment` (`date_assignment`);
 
 --
--- Индексы таблицы `skzi_assignments__history`
---
-ALTER TABLE `skzi_assignments__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
-
---
--- Индексы таблицы `skzi__history`
---
-ALTER TABLE `skzi__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
-
---
 -- Индексы таблицы `tokens`
 --
 ALTER TABLE `tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `sn` (`sn`);
-
---
--- Индексы таблицы `tokens__history`
---
-ALTER TABLE `tokens__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
 
 --
 -- Индексы таблицы `token_types`
@@ -553,14 +302,6 @@ ALTER TABLE `users_cache`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `login` (`login`),
   ADD KEY `fio` (`fio`);
-
---
--- Индексы таблицы `users_cache__history`
---
-ALTER TABLE `users_cache__history`
-  ADD PRIMARY KEY (`history__id`),
-  ADD KEY `prikeys` (`id`) USING HASH,
-  ADD KEY `datekeys` (`history__modified`) USING BTREE;
 
 --
 -- Индексы таблицы `xfecp_users`
@@ -580,22 +321,10 @@ ALTER TABLE `ecps`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `ecps__history`
---
-ALTER TABLE `ecps__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `ecp_assignments`
 --
 ALTER TABLE `ecp_assignments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT для таблицы `ecp_assignments__history`
---
-ALTER TABLE `ecp_assignments__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `ecp_dov`
@@ -604,34 +333,16 @@ ALTER TABLE `ecp_dov`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `ecp_dov__history`
---
-ALTER TABLE `ecp_dov__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `issuers`
 --
 ALTER TABLE `issuers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `issuers__history`
---
-ALTER TABLE `issuers__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT для таблицы `orders__history`
---
-ALTER TABLE `orders__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `skzi`
@@ -646,34 +357,16 @@ ALTER TABLE `skzi_assignments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `skzi_assignments__history`
---
-ALTER TABLE `skzi_assignments__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT для таблицы `skzi__history`
---
-ALTER TABLE `skzi__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `tokens`
 --
 ALTER TABLE `tokens`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `tokens__history`
---
-ALTER TABLE `tokens__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `token_types`
 --
 ALTER TABLE `token_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `users_cache`
@@ -682,16 +375,11 @@ ALTER TABLE `users_cache`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `users_cache__history`
---
-ALTER TABLE `users_cache__history`
-  MODIFY `history__id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `xfecp_users`
 --
 ALTER TABLE `xfecp_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
