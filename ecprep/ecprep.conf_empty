@@ -1,0 +1,9 @@
+{
+  db => 'mysql://user:pass@server/pdata',
+
+  fop_cmd => '../fop/fop',
+  fop_conf => '../fop/fop.conf',
+
+  smtphost => 'mail.testdomain',
+  mailfrom => 'testuser@testdomain',
+}

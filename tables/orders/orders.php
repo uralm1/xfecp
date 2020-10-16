@@ -2,7 +2,7 @@
 class tables_orders {
   
   function getTitle(&$record) {
-    return 'Документ: '.$record->val('n').' от '.$record->strval('date');
+    return 'Документ: №'.$record->val('n').' от '.$record->strval('date');
   }
 
   function titleColumn() {

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xml:lang="ru">
+<!--bookinfo>
+<title>ecprep</title>
+</bookinfo-->
+
+<article xml:lang="ru">
+<simplesect>
+<informaltable frame="none" rowsep="0" colsep="0">
+  <tgroup cols="5">
+    <colspec colname="c1" colwidth="1*"/>
+    <colspec colname="c2" colwidth="2*"/>
+    <colspec colname="c3" colwidth="1.5*"/>
+    <colspec colname="c4" colwidth="2*"/>
+    <colspec colname="c5" colwidth="1*"/>
+    <spanspec spanname="s234" namest="c2" nameend="c4"/>
+    <spanspec spanname="s12345" namest="c1" nameend="c5"/>
+    <spanspec spanname="s12" namest="c1" nameend="c2"/>
+    <spanspec spanname="s45" namest="c4" nameend="c5"/>
+    <tbody>
+      <row>
+        <entry spanname="s234" align="center">
+        Государственное унитарное предприятие по эксплуатации
+        водопроводно-канализационного хозяйства «Уфаводоканал»
+        </entry>
+      </row>
+      <row>
+        <entry spanname="s234" align="center">
+        (ГУП РБ «Уфаводоканал»)
+        </entry>
+      </row>
+      <!--row>
+        <entry spanname="s12" align="left">СОГЛАСОВАНО</entry>
+        <entry spanname="s45" align="left">УТВЕРЖДАЮ</entry>
+      </row>
+      <row>
+        <entry spanname="s12" align="left">Начальник отдела телекоммуникаций</entry>
+        <entry spanname="s45" align="left">Главный специалист УИТ</entry>
+      </row>
+      <row>
+        <entry spanname="s12" align="left">Ю.М.Нургалиев</entry>
+        <entry spanname="s45" align="left">А.Ф.Хатыпов</entry>
+      </row>
+      <row>
+        <entry spanname="s12" align="left">
+          _______________________ 2014 г.
+        </entry>
+        <entry spanname="s45" align="left">
+          _______________________ 2014 г.
+        </entry>
+      </row>
+      <row><entry></entry></row-->
+      <row>
+        <entry spanname="s234" align="center">
+	  <emphasis role="bold">ОТЧЁТ</emphasis>
+        </entry>
+      </row>
+      <row>
+        <entry spanname="s12345" align="center">
+	  <emphasis role="bold">По реестру электронно-цифровых подписей и криптосредств на %%REP_DAY%%</emphasis>
+        </entry>
+      </row>
+    </tbody>
+  </tgroup>
+</informaltable>
+</simplesect>
+
+<section><title>Информационные активы.</title>
+  <section xml:id="ecps"><title>Электронно-цифровые подписи (ЭЦП).</title>
+    <para>ЭЦП, отсортированные по дате выпуска, находящиеся в распоряжении сотрудников предприятия.
+Группа сетевого администрирования оказывает содействие в получении указанных ЭЦП.<?linebreak?>
+Кому выдана конкретная ЭЦП см. <xref linkend="ecp_assignments"/>.<?linebreak?>
+Информация актуальна на %%REP_DAY%%.</para>
+    <informaltable frame="all">
+      <tgroup cols="7" align="left" colsep="1" rowsep="1">
+	<colspec colname="c1" colwidth="*"/>
+	<colspec colname="c2" colwidth="8*"/>
+	<colspec colname="c3" colwidth="3*"/>
+	<colspec colname="c4" colwidth="3*"/>
+	<colspec colname="c5" colwidth="5*"/>
+	<colspec colname="c6" colwidth="4*"/>
+	<colspec colname="c7" colwidth="6*"/>
+	<thead>
+	  <row>
+	    <entry>№</entry>
+	    <entry>Владелец ЭЦП (поля CN,SN,G сертификата)</entry>
+	    <entry>Дата выпуска</entry>
+	    <entry>Дата окончания</entry>
+	    <entry>Удостоверяющий центр</entry>
+	    <entry>Статус</entry>
+	    <entry>Основание привлечения сотрудника УИТ, в т.ч.основание закупки</entry>
+	  </row>
+	</thead>
+	<tbody>
+%%REP_ECPS%%
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+
+  <section xml:id="skzi"><title>Криптографические средства.</title>
+    <para>Средства криптографической защиты информации, находящиеся в активах управления ИТ предприятия.
+Криптосредство устанавливается сотрудником группы сетевого администрирования по согласованию с начальником управления ИТ.<?linebreak?>
+Кому установлено конкретное криптосредство см. <xref linkend="skzi_assignments"/>.<?linebreak?>
+Сканированную копию лицензионного соглашения на криптосредство и информацию о проверке контрольных сумм дистрибутивов можно сверить в группе сетевого администрирования управления ИТ.
+Информация актуальна на %%REP_DAY%%.</para>
+    <informaltable frame="all">
+      <tgroup cols="6" align="left" colsep="1" rowsep="1">
+	<colspec colname="c1" colwidth="*"/>
+	<colspec colname="c2" colwidth="4*"/>
+	<colspec colname="c3" colwidth="4*"/>
+	<colspec colname="c4" colwidth="4*"/>
+	<colspec colname="c5" colwidth="6*"/>
+	<colspec colname="c6" colwidth="3*"/>
+	<thead>
+	  <row>
+	    <entry>№</entry>
+	    <entry>Название</entry>
+	    <entry>Производитель</entry>
+	    <entry>Серийный номер</entry>
+	    <entry>Дистрибутив и место хранения</entry>
+	    <entry>Использование</entry>
+	  </row>
+	</thead>
+	<tbody>
+%%REP_SKZI%%
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+
+  <section xml:id="tokens"><title>Носители ключевой информации.</title>
+    <para>Носители ключевой информации (токены), находящиеся в активах управления ИТ предприятия.
+Носители ключевой информации используются для хранения ЭЦП у пользователей и распределяются сотрудником группы сетевого администрирования.<?linebreak?>
+Кому выдан конкретный носитель см. <xref linkend="ecp_assignments"/>.<?linebreak?>
+Информация актуальна на %%REP_DAY%%.</para>
+    <informaltable frame="all">
+      <tgroup cols="4" align="left" colsep="1" rowsep="1">
+	<colspec colname="c1" colwidth="*"/>
+	<colspec colname="c2" colwidth="8*"/>
+	<colspec colname="c3" colwidth="3*"/>
+	<colspec colname="c4" colwidth="3*"/>
+	<thead>
+	  <row>
+	    <entry>№</entry>
+	    <entry>Тип носителя</entry>
+	    <entry>Серийный номер</entry>
+	    <entry>Использование</entry>
+	  </row>
+	</thead>
+	<tbody>
+%%REP_TOKENS%%
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+</section>
+
+<section><title>Распределение активов.</title>
+  <section xml:id="ecp_assignments"><title>Выдачи ключевых носителей с ЭЦП.</title>
+    <para>Информация о выдаче носителей ключевой информации с записанными ЭЦП владельцам
+или доверенным лицам. Выдача производится сотрудником управления ИТ под роспись в "Журнале работ".<?linebreak?>
+Перечень всех ЭЦП см. <xref linkend="ecps"/><?linebreak?>
+Перечень всех носителей ключевой информации см. <xref linkend="tokens"/><?linebreak?>
+Сканированные копии доверенностей, приказов и иных документов, а также номер росписи в журнале и номер заявки по работе можно получить у сотрудника сетевого администрирования УИТ.
+Информация актуальна на %%REP_DAY%%.</para>
+    <informaltable frame="all">
+      <tgroup cols="7" align="left" colsep="1" rowsep="1">
+	<colspec colname="c1" colwidth="*"/>
+	<colspec colname="c2" colwidth="3*"/>
+	<colspec colname="c3" colwidth="8*"/>
+	<colspec colname="c4" colwidth="4*"/>
+	<colspec colname="c5" colwidth="3*"/>
+	<colspec colname="c6" colwidth="4*"/>
+	<colspec colname="c7" colwidth="6*"/>
+	<thead>
+	  <row>
+	    <entry>№</entry>
+	    <entry>Дата и время выдачи</entry>
+	    <entry>Сертификат ЭЦП</entry>
+	    <entry>Кому выдана</entry>
+	    <entry>Ключевой носитель</entry>
+	    <entry>Исполнитель</entry>
+	    <entry>Основание выдачи, доверенность (в случае выдачи доверенному лицу).</entry>
+	  </row>
+	</thead>
+	<tbody>
+%%REP_ECP_ASSIGNMENTS%%
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+
+  <section xml:id="skzi_assignments"><title>Установки криптосредств на АРМ пользователей.</title>
+    <para>Информация об установке криптосредств на АРМ пользователей.<?linebreak?>
+Перечень всех криптосредств см. <xref linkend="skzi"/><?linebreak?>
+Сканированные копии приказов и иных документов, а также номер заявки по работе можно получить у сотрудника группы сетевого администрирования УИТ.
+Информация актуальна на %%REP_DAY%%.</para>
+    <informaltable frame="all">
+      <tgroup cols="6" align="left" colsep="1" rowsep="1">
+	<colspec colname="c1" colwidth="*"/>
+	<colspec colname="c2" colwidth="4*"/>
+	<colspec colname="c4" colwidth="6*"/>
+	<colspec colname="c5" colwidth="5*"/>
+	<colspec colname="c6" colwidth="5*"/>
+	<colspec colname="c7" colwidth="6*"/>
+	<thead>
+	  <row>
+	    <entry>№</entry>
+	    <entry>Дата и время операции</entry>
+	    <entry>СКЗИ</entry>
+	    <entry>Имя компьютера, кому установлено</entry>
+	    <entry>Исполнитель</entry>
+	    <entry>Основание установки</entry>
+	  </row>
+	</thead>
+	<tbody>
+%%REP_SKZI_ASSIGNMENTS%%
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+</section>
+
+<section>
+<informaltable frame="none" rowsep="0" colsep="0">
+  <tgroup cols="5">
+    <colspec colname="c1" colwidth="1*"/>
+    <colspec colname="c2" colwidth="2*"/>
+    <colspec colname="c3" colwidth="1.5*"/>
+    <colspec colname="c4" colwidth="2*"/>
+    <colspec colname="c5" colwidth="1*"/>
+    <spanspec spanname="s234" namest="c2" nameend="c4"/>
+    <spanspec spanname="s12345" namest="c1" nameend="c5"/>
+    <spanspec spanname="s12" namest="c1" nameend="c2"/>
+    <spanspec spanname="s123" namest="c1" nameend="c3"/>
+    <spanspec spanname="s45" namest="c4" nameend="c5"/>
+    <tbody>
+      <row>
+        <entry spanname="s12" align="left">
+        </entry>
+      </row>
+      <row>
+        <entry spanname="s123" align="left">
+Начальник управления (ИТ)
+        </entry>
+        <entry spanname="s45" align="left">
+А.В.Васильев
+        </entry>
+      </row>
+      <row><entry></entry></row>
+      <row>
+        <entry spanname="s12345" align="left">
+<subscript>Исп: (автоматизированный запрос) У.Ф.Хасанов, т.1178</subscript>
+        </entry>
+      </row>
+    </tbody>
+  </tgroup>
+</informaltable>
+</section>
+</article>
+</book>

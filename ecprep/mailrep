@@ -1,0 +1,95 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+use v5.12;
+use FindBin;
+use Email::Sender::Simple qw(try_to_sendmail);
+use Email::Sender::Transport::SMTP qw();
+use Email::MIME;
+use IO::All;
+use Encode;
+use Date::Simple('today');
+
+my $cfg;
+{ # slurp config
+  #open my $fh, '<', "$FindBin::Bin/ecprep.conf" or die "Can't read config file!\n";
+  #local $/ = undef;
+  #$cfg = eval <$fh>;
+  $cfg = eval io->file("$FindBin::Bin/ecprep.conf")->slurp;
+  #close $fh;
+}
+die "Error found in config file.\n" if (!$cfg or ref($cfg) ne 'HASH');
+
+my $rep_day = today();
+
+if (@ARGV != 1) {
+  die "Genuine help: $0 hatypov\@uwc.ufanet.ru\n";
+}
+my $rep_to = shift;
+#my $rep_to = 'ural@uwc.ufanet.ru';
+
+###
+say 'Создание отчета ...';
+if (system("./ecprep.pl ecprep_template.xml > rep/ecprep.xml")) {
+  die "Error: xml build failed\n";
+}
+if (system("xsltproc --nonet _pdf.xsl rep/ecprep.xml > rep/ecprep.fo")) {
+  die "Error: fo build failed\n";
+}
+if (system("$cfg->{fop_cmd} -c $cfg->{fop_conf} -fo rep/ecprep.fo -pdf rep/ecprep.pdf")) {
+  die "Error: pdf build failed\n";
+}
+
+###
+# Группа сетевого администрирования
+my $f2 = '"'.decode_utf8('Группа сетевого администрирования')."\" <$cfg->{mailfrom}>";
+my $subj = decode_utf8('Отчёт по реестру электронно-цифровых подписей и криптосредств на ').$rep_day->format('%d.%m.%Y');
+my $msg = decode_utf8("По Вашему автоматизированному запросу направляю отчёт по реестру электронно-цифровых подписей и криптосредств на ");
+$msg.=$rep_day->format('%d.%m.%Y').decode_utf8(".\nОтчёт во вложенном файле.\n\nИсп.(автоматизированный запрос) У.Ф.Хасанов, т.1178");
+
+my @parts = (
+  Email::MIME->create(
+    attributes => {
+      content_type => 'text/plain',
+      charset => 'UTF-8',
+      encoding => '8bit',
+    },
+    body_str => $msg,
+  ),
+  Email::MIME->create(
+    attributes => {
+      filename => 'ecprep.pdf',
+      content_type => 'application/pdf',
+      encoding => 'base64',
+      name => 'ecprep.pdf',
+      disposition => 'attachment',
+    },
+    body => io('rep/ecprep.pdf')->binary->all,
+  ),
+);
+
+my $email = Email::MIME->create(
+  header_str => [
+    To => $rep_to,
+    From => $f2,
+    Subject => $subj,
+  ],
+  parts => [ @parts ]
+);
+
+say "Отправка по электронной почте на $rep_to ...";
+
+try_to_sendmail(
+  $email,
+  { from => $cfg->{mailfrom},
+    to => $rep_to,
+    transport => Email::Sender::Transport::SMTP->new({
+      host => $cfg->{smtphost},
+      port => 25,
+    })
+  }
+) or die "Error: can't mail report\n";
+
+say 'Завершено.';
+
