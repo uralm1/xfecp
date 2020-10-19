@@ -2,3 +2,9 @@
 !/templates_c/.htaccess
 /templates_c/
 /conf.ini
+/ecprep/rep/*.fo
+/ecprep/rep/*.pdf
+/ecprep/rep/*.xml
+/ecprep/builds/*.fo
+/ecprep/builds/*.pdf
+/ecprep/builds/*.xml
